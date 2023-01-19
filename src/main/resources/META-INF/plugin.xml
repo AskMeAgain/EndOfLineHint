@@ -1,8 +1,8 @@
 <idea-plugin>
-    <id>intellij.plugin.template</id>
-    <name>IntellijPluginTemplate</name>
+    <id>io.github.askmeagain.endoflinehint</id>
+    <name>End of Line Hint</name>
     <version>0.1</version>
-    <vendor url="github url">You</vendor>
+    <vendor url="https://github.com/AskMeAgain/EndOfLineHint">AskMeAgain</vendor>
 
     <description>
         <!--........................this will be replaced by the pathPluginXml gradle task...........................-->
