@@ -13,4 +13,11 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
 
+    <extensions defaultExtensionNs="com.intellij">
+        <codeInsight.inlayProvider language="JAVA"
+                                   implementationClass="io.github.askmeagain.endoflinehint.PlainTextUnixTimestampInlayHints"/>
+
+    </extensions>
+
+
 </idea-plugin>
