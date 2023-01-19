@@ -14,8 +14,10 @@
     <depends>com.intellij.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <applicationService
+                serviceImplementation="io.github.askmeagain.endoflinehint.EndOfLineHintState"/>
         <codeInsight.inlayProvider language="JAVA"
-                                   implementationClass="io.github.askmeagain.endoflinehint.PlainTextUnixTimestampInlayHints"/>
+                                   implementationClass="io.github.askmeagain.endoflinehint.EndOfLineHintProvider"/>
 
     </extensions>
 

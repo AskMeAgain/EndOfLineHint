@@ -4,51 +4,56 @@ import com.intellij.codeInsight.hints.*;
 import com.intellij.lang.Language;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiPlainTextFile;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class PlainTextUnixTimestampInlayHints implements InlayHintsProvider<NoSettings> {
-  private static final String UNIX_TIMESTAMP_HINTS = "UnixTimestampHints";
-  private static final SettingsKey<NoSettings> KEY = new SettingsKey<>(UNIX_TIMESTAMP_HINTS);
+public class EndOfLineHintProvider implements InlayHintsProvider<EndOfLineHintState> {
+  private static final String EndOfLineHint = "EndOfLineHint";
+  private static final SettingsKey<EndOfLineHintState> KEY = new SettingsKey<>(EndOfLineHint);
 
   @Nullable
   @Override
   public InlayHintsCollector getCollectorFor(@NotNull PsiFile file,
                                              @NotNull Editor editor,
-                                             @NotNull NoSettings settingsState,
+                                             @NotNull EndOfLineHintState settingsState,
                                              @NotNull InlayHintsSink inlayHintsSink) {
-    return new BaseInlayHintsCollector(editor);
+    return new HintCollector(editor, settingsState);
   }
 
   @NotNull
   @Override
-  public NoSettings createSettings() {
-    return new NoSettings();
+  public EndOfLineHintState createSettings() {
+    return EndOfLineHintState.getInstance();
   }
 
   @Nls(capitalization = Nls.Capitalization.Sentence)
   @NotNull
   @Override
   public String getName() {
-    return UNIX_TIMESTAMP_HINTS;
+    return EndOfLineHint;
   }
 
   @NotNull
   @Override
-  public SettingsKey<NoSettings> getKey() {
+  public SettingsKey<EndOfLineHintState> getKey() {
     return KEY;
   }
 
   @Override
   public String getPreviewText() {
-    return "abc";
+    return "public class Foo {\n" +
+        "\tvoid main() {\n" +
+        "\t\tif(123 > 333){\n" +
+        "\t\t\tint i = 0;\n" +
+        "\t\t}\n" +
+        "\t}\n" +
+        "}";
   }
 
   @Override
-  public ImmediateConfigurable createConfigurable(@NotNull NoSettings settings) {
-    return null;
+  public @NotNull ImmediateConfigurable createConfigurable(@NotNull EndOfLineHintState settings) {
+    return new EndOfLineConfig(settings);
   }
 
   @Override
@@ -58,6 +63,6 @@ public class PlainTextUnixTimestampInlayHints implements InlayHintsProvider<NoSe
 
   @Override
   public boolean isVisibleInSettings() {
-    return false;
+    return true;
   }
 }
