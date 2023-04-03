@@ -1,14 +1,14 @@
 <idea-plugin>
     <id>io.github.askmeagain.endoflinehint</id>
     <name>End of Line Hint</name>
-    <version>0.1</version>
+    <version>0.2</version>
     <vendor url="https://github.com/AskMeAgain/EndOfLineHint">AskMeAgain</vendor>
 
     <description>
         <!--........................this will be replaced by the pathPluginXml gradle task...........................-->
     </description>
 
-    <idea-version since-build="213.4928.7"/>
+    <idea-version since-build="223.*"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
@@ -18,8 +18,5 @@
                 serviceImplementation="io.github.askmeagain.endoflinehint.EndOfLineHintState"/>
         <codeInsight.inlayProvider language="JAVA"
                                    implementationClass="io.github.askmeagain.endoflinehint.EndOfLineHintProvider"/>
-
     </extensions>
-
-
 </idea-plugin>
